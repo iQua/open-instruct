@@ -2000,6 +2000,7 @@ requires-dist = [
     { name = "nvitop", specifier = ">=1.4.2" },
     { name = "packaging", specifier = ">=24.2" },
     { name = "peft", specifier = ">=0.13.2" },
+    { name = "ray" },
     { name = "ray", extras = ["default"], specifier = ">=2.44.1" },
     { name = "setuptools", specifier = ">=75.6.0" },
     { name = "tensorboard", specifier = ">=2.18.0" },
