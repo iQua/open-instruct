@@ -4,7 +4,7 @@ accelerate launch \
 --mixed_precision bf16 \
 --dynamo_backend inductor \
 --num_machines 1 \
---num_processes 8 \
+--num_processes 1 \
 --use_deepspeed \
 --deepspeed_config_file configs/ds_configs/stage3_no_offloading_accelerate.conf \
 open_instruct/finetune.py \
@@ -26,7 +26,6 @@ open_instruct/finetune.py \
 --num_train_epochs 2 \
 --output_dir output/ \
 --with_tracking \
---report_to wandb \
 --logging_steps 1 \
 --reduce_loss sum \
 --model_revision main \
