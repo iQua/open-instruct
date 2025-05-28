@@ -29,6 +29,6 @@ open_instruct/finetune.py \
 --logging_steps 1 \
 --reduce_loss sum \
 --model_revision main \
---dataset_mixer_list allenai/tulu-v3-mix-preview-4096-OLMoE 1.0 ai2-adapt-dev/daring-anteater-specialized 1.0 \
+--dataset_mixer_list allenai/tulu-v3.1-mix-preview-4096-OLMoE 1.0 ai2-adapt-dev/daring-anteater-specialized 1.0 \
 --checkpointing_steps epoch \
 --add_bos
