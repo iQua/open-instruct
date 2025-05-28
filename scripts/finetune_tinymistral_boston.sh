@@ -7,8 +7,8 @@ accelerate launch \
 --num_machines 1 \
 --num_processes 1 \
 open_instruct/finetune.py \
---model_name_or_path allenai/OLMoE-1B-7B-0924 \
---tokenizer_name allenai/OLMoE-1B-7B-0924 \
+--model_name_or_path M4-ai/TinyMistral-6x248M \
+--tokenizer_name M4-ai/TinyMistral-6x248M \
 --use_flash_attn \
 --use_lora \
 --lora_rank 32 \
