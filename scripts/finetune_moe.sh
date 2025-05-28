@@ -1,4 +1,5 @@
 export CUDA_VISIBLE_DEVICES=0
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 
 accelerate launch \
 --mixed_precision bf16 \
@@ -17,8 +18,8 @@ open_instruct/finetune.py \
 --lora_dropout 0.1 \
 --max_seq_length 4096 \
 --preprocessing_num_workers 128 \
---per_device_train_batch_size 2 \
---gradient_accumulation_steps 8 \
+--per_device_train_batch_size 1 \
+--gradient_accumulation_steps 16 \
 --learning_rate 2e-05 \
 --lr_scheduler_type linear \
 --warmup_ratio 0.03 \
@@ -31,4 +32,5 @@ open_instruct/finetune.py \
 --model_revision main \
 --dataset_mixer_list allenai/tulu-v3.1-mix-preview-4096-OLMoE 1.0 \
 --checkpointing_steps epoch \
---add_bos
+--add_bos \
+--gradient_checkpointing
