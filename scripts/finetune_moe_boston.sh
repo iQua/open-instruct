@@ -5,9 +5,7 @@ accelerate launch \
 --mixed_precision bf16 \
 --dynamo_backend inductor \
 --num_machines 1 \
---num_processes 3 \
---use_deepspeed \
---deepspeed_config_file configs/ds_configs/stage3_no_offloading_accelerate.conf \
+--num_processes 1 \
 open_instruct/finetune.py \
 --model_name_or_path allenai/OLMoE-1B-7B-0924 \
 --tokenizer_name allenai/OLMoE-1B-7B-0924 \
