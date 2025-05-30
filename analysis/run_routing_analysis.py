@@ -1,4 +1,3 @@
-from datasets import load_dataset
 from transformers import OlmoeForCausalLM, AutoTokenizer, AutoModelForCausalLM
 import torch
 import time
@@ -185,15 +184,15 @@ if __name__=='__main__':
         model, tokenizer = load_model()
 
     length = 2048
-    for domain in tqdm(["tulu"]):
+    for domain in tqdm(["tulu", "github_oss_with_stack", "arxiv", "c4", "b3g", "wikipedia"]):
         print(f"Domain: {domain}")
         layer_counters, crosslayer_counters, eid2token_layer0, eid2token_layer5, eid2token_layer11 = run_analysis(domain, model_name)
-        Path(f"open-instruct/routing_output/{model_name}/expert_counts").mkdir(parents=True, exist_ok=True)
-        Path(f"open-instruct/routing_output/{model_name}/expert_counts_crosslayer").mkdir(parents=True, exist_ok=True)
-        Path(f"open-instruct/routing_output/{model_name}/eid2token").mkdir(parents=True, exist_ok=True)
-        with open(f"open-instruct/routing_output/{model_name}/expert_counts/{name2finaldata[domain]}.pkl", "wb") as f:
+        Path(f"{model_name}/expert_counts").mkdir(parents=True, exist_ok=True)
+        Path(f"{model_name}/expert_counts_crosslayer").mkdir(parents=True, exist_ok=True)
+        Path(f"{model_name}/eid2token").mkdir(parents=True, exist_ok=True)
+        with open(f"{model_name}/expert_counts/{name2finaldata[domain]}.pkl", "wb") as f:
             pkl.dump([layer_counters[0], layer_counters[5], layer_counters[11]], f)
-        with open(f"open-instruct/routing_output/{model_name}/expert_counts_crosslayer/{name2finaldata[domain]}.pkl", "wb") as f:
+        with open(f"{model_name}/expert_counts_crosslayer/{name2finaldata[domain]}.pkl", "wb") as f:
             pkl.dump([crosslayer_counters[(0, 5)], crosslayer_counters[(5, 11)]], f)
-        with open(f"open-instruct/routing_output/{model_name}/eid2token/{name2finaldata[domain]}.pkl", "wb") as f:
+        with open(f"{model_name}/eid2token/{name2finaldata[domain]}.pkl", "wb") as f:
             pkl.dump([eid2token_layer0, eid2token_layer5, eid2token_layer11], f)
