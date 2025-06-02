@@ -615,13 +615,19 @@ def main(args: FlatArguments, tc: TokenizerConfig):
             lora_alpha=args.lora_alpha,
             lora_dropout=args.lora_dropout,
             target_modules=[
+                # in attention layers
                 "q_proj",
                 "o_proj",
                 "v_proj",
                 "k_proj",
+                # in mlp layers (for OLMoE)
                 "gate_proj",
                 "up_proj",
                 "down_proj",
+                # in mlp layers (for Mistral's or TinyMistral's MoE)
+                "w1",
+                "w2",
+                "w3"
             ],
         )
         model = get_peft_model(model, peft_config)
